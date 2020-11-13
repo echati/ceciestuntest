@@ -2,31 +2,26 @@
 
 <section>
 
-	<h1><?php bloginfo('name');?></h1>
+    <p> C'est la page home ! la page accueil </p>
 
-	<h1>Bonjour l'index principal </h1>
+<!-- The Loop (la boucle)-->
+<?php if (have_posts()):
+    while (have_posts()):
+        the_post();?>
 
-	<!-- The Loop -->
-	<?php  if(have_posts()) :
-		while(have_posts()) :
-			   the_post() ;?>
+			  <article>
+            <h2>
+							<a href="<?php the_permalink();?>"><?php the_title();?></a>
+						</h2>
+            <p><?php the_time();?></p>
+            <p><?php the_author_posts_link();?></p>
+            <div><?php the_content();?></div>
+            <p><?php comments_number();?></p>
+        </article>
 
-	<article>
-		<h2>
-			<?php the_title();?>
-		</h2>
-		<div>
-			<?php the_content();?>
-		</div>
-	</article>
-
-<?php endwhile; else :?> 
-	<p>
-		Désolé, pas d'article !
-	</p>
-<?php endif;?>
+			<?php endwhile; else : ?> <p>Désolé, plsu d'article après ça </p>
+    <?php endif;	?>
 
 </section>
 
-
-<?php get_footer(); ?>
+    <?php get_footer(); ?>
